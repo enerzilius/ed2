@@ -2,8 +2,41 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <cstdio>
 
 using namespace std;
+
+void embaralhar(int *array, size_t n, int seed){
+    srand(seed);
+    if (n > 1) {
+        size_t i;
+        for (i = 0; i < n - 1; i++) {
+          size_t j = i + rand() / (RAND_MAX / (n - i) + 1);
+          int t = array[j];
+          array[j] = array[i];
+          array[i] = t;
+        }
+    }
+}
+
+vector<int> gerar_vetor_aleatorio_sem_reps(int n, int seed){
+    int* saida = new int[n];
+    
+    for(int i = 0; i < n; i++)
+        saida[i] = i;
+    
+    embaralhar(saida, n, seed);
+    
+    std::vector<int> v;
+    v.reserve(n);
+
+    for(int i = 0; i < n; i++)
+        v.push_back(saida[i]);
+    
+    delete[] saida;
+
+    return v;
+}
 
 template<typename T>
 bool hasRepetitions(vector<T> &vec) {
@@ -23,10 +56,13 @@ int main(){
 
     vector<string> s2 = { "banana", "melao", "melao" };
 
+    vector<int> grande = gerar_vetor_aleatorio_sem_reps(1000, 99);
+
     cout<<hasRepetitions(vec) <<endl;
     cout<<hasRepetitions(u) <<endl;
     cout<<hasRepetitions(s) <<endl;
     cout<<hasRepetitions(s2) <<endl;
+    cout<<hasRepetitions(grande) <<endl;
 
     return 0;
 }
