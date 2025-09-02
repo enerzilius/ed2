@@ -47,6 +47,11 @@ bool hasRepetitions(vector<T> &vec) {
     return false;
 }
 
+template<typename T>
+int getLargest(vector<T> &vec, int k) {
+    return vec[vec.size()-1-k];
+}
+
 int main(){
     vector<int> vec = { 1, 2, 3 , 4, 5 };
 
@@ -56,13 +61,10 @@ int main(){
 
     vector<string> s2 = { "banana", "melao", "melao" };
 
-    vector<int> grande = gerar_vetor_aleatorio_sem_reps(1000, 99);
+    vector<int> grande = gerar_vetor_aleatorio_sem_reps(100, 99);
 
-    cout<<hasRepetitions(vec) <<endl;
-    cout<<hasRepetitions(u) <<endl;
-    cout<<hasRepetitions(s) <<endl;
-    cout<<hasRepetitions(s2) <<endl;
     cout<<hasRepetitions(grande) <<endl;
+    cout<<getLargest(grande, 0)<<endl;
 
     return 0;
 }
