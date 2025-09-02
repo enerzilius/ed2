@@ -64,7 +64,7 @@ int main(){
     vector<int> grande = gerar_vetor_aleatorio_sem_reps(100, 99);
 
     cout<<hasRepetitions(grande) <<endl;
-    cout<<getLargest(grande, 0)<<endl;
+    cout<<getLargest(grande, 1)<<endl;
 
     return 0;
 }
