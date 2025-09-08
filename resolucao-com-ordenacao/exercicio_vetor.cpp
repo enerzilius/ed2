@@ -7,19 +7,19 @@
 
 using namespace std;
 
-pair<int, int> twoSum(vector<int> v, int k) {;
-    sort(v.begin(), v.end());
+pair<int, int> twoSum(const vector<int>& v, int k) {;
+    vector<int> copy = v;
+    sort(copy.begin(), copy.end());
     
-    int low = 0;
-    int high = v.size()-1;
+    int low = 0, high = copy.size()-1;
 
-    if(k <= v[low]) return make_pair(-1, -1);
+    if(k <= copy[low]) return make_pair(-1, -1);
 
     while (low < high)
     {
-        if(v[low] + v[high] == k) return make_pair(v[low], v[high]);
-        if(v[low] + v[high] < k) low++;
-        if(v[low] + v[high] > k) high--;
+        if(copy[low] + copy[high] == k) return make_pair(copy[low], copy[high]);
+        if(copy[low] + copy[high] < k) low++;
+        if(copy[low] + copy[high] > k) high--;
     }
     
     return make_pair(-1, -1);
@@ -27,7 +27,7 @@ pair<int, int> twoSum(vector<int> v, int k) {;
 
 int main() {
     vector<int> v = { 9, 14, 2, 1, 17, 10 };
-    int k = 27;
+    int k = 24;
     pair<int, int> par = twoSum(v, k);
     cout<<par.first<<" "<<par.second<<endl;
 
