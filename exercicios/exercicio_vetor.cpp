@@ -27,7 +27,7 @@ pair<int, int> twoSum(const vector<int>& v, int k) {;
 
 int main() {
     vector<int> v = { 9, 14, 2, 1, 17, 10 };
-    int k = 24;
+    int k = 99;
     pair<int, int> par = twoSum(v, k);
     cout<<par.first<<" "<<par.second<<endl;
 
