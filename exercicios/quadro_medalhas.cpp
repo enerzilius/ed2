@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <utility>
+#include <fstream>
 
 using namespace std;
 
@@ -24,21 +25,26 @@ struct Pais {
 };
 
 vector<Pais> readCountriesFromFile(const string& filepath) {
+    ifstream fin(filepath);
+     if (!fin.is_open()) {
+        cerr << "Erro ao abrir arquivo " << filepath << endl;
+        return {};
+    }
+
     int N, o, p, b;
     string nome;
 
     
-    cin >> N;
-    cout<<N<<endl;
+    fin >> N;
     vector<Pais> quadro;
-    quadro.reserve(N * sizeof(Pais));
-    cout<<"aa"<<endl;
+    quadro.reserve(N);
 
     for(int i = 0; i < N; i++) {
-        cin >> nome >> o >> p >> b;
+        fin >> nome >> o >> p >> b;
         quadro.emplace_back(nome, o, p, b);
         quadro[i].print();
     }
+    cout<<endl;
     return quadro;
 }
 
@@ -54,6 +60,6 @@ void sortQuadroMedalhas() {
 }
 
 int main() {
-    vector<Pais> paises = readCountriesFromFile("../arquivos_suporte/paises.txt");
+    vector<Pais> paises = readCountriesFromFile("arquivos_suporte/paises.txt");
     return 0;
 }
