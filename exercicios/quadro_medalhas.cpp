@@ -55,11 +55,26 @@ bool compararPaises(const Pais& A, const Pais& B) {
     return A.nome < B.nome;
 }
 
-void sortQuadroMedalhas() {
-
+void sortQuadroMedalhas(vector<Pais>& paises) {\
+    for (int i = 0; i < paises.size()-1; i++)
+    {
+        for (int j = 0; j < paises.size()-i-1; j++)
+        {
+            if(!compararPaises(paises[j], paises[j+1])){
+                swap(paises[j], paises[j+1]);
+            }
+        }
+    }
+    
 }
 
 int main() {
     vector<Pais> paises = readCountriesFromFile("arquivos_suporte/paises.txt");
+
+    sortQuadroMedalhas(paises);
+    for(Pais pais : paises) {
+        pais.print();
+    }
+
     return 0;
 }
