@@ -42,6 +42,13 @@ vector<Pais> readCountriesFromFile(const string& filepath) {
     return quadro;
 }
 
+bool compararPaises(const Pais& A, const Pais& B) {
+    if(A.ouro != B.ouro) return A.ouro > B.ouro;
+    if(A.prata != B.prata) return A.prata > B.prata;
+    if(A.bronze != B.bronze) return A.bronze > B.bronze;
+    return A.nome < B.nome;
+}
+
 void sortQuadroMedalhas() {
 
 }
