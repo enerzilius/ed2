@@ -24,9 +24,11 @@ void selectionSort(int *v, int n) {
 }
 
 
-int main() {
+int main(int argc, char** argv) {
     int n =10;
 
+    if(argc > 1) n = atoi(argv[1]);
+    
     vector<int> v;
     v = gerar_vetor_aleatorio(n, 99, n*100);
 
