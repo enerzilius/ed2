@@ -41,11 +41,20 @@ void merge(T *v, int p, int q, int r) {
     delete[] D;
 }
 
+template<typename T>
+void mergeSort(T* v, int p, int r) {
+    if(r > p) {
+        int q = p + (r - p) / 2;
+        mergeSort(v, p, q);
+        mergeSort(v, q+1, r);
+        merge(v, p, q, r);
+    }
+}
+
 int main() {
-    int v[] = { 2, 3, 0, 5 };
-    int p = 0, r = 3;
-    int q = p + (r - p) / 2;
-    merge(v, p, q, r) ;
+    int v[] = { 1, 7, 3, 9, 11, 0, 0, 5 };
+    int p = 0, r = 7;
+    mergeSort(v, p, r);
     for (int i = 0; i <= r; i++)
     {
         cout<<v[i] << " ";
