@@ -1,6 +1,8 @@
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
+#include <string>
+#include "utils.h"
 
 using namespace std;
 
@@ -51,15 +53,15 @@ void mergeSort(T* v, int p, int r) {
     }
 }
 
-int main() {
-    int v[] = { 1, 7, 3, 9, 11, 0, 0, 5 };
-    int p = 0, r = 7;
-    mergeSort(v, p, r);
-    for (int i = 0; i <= r; i++)
-    {
-        cout<<v[i] << " ";
-    }
-    cout<<"\n";
+int main(int argc, char** argv) {
+    using namespace std;
+
+    int n = stoi(argv[1]);
+
+    vector<int> v = gerar_vetor_aleatorio(n, 99, n*100);
+    imprimir_vetor(v.data(), n);
+    mergeSort(v.data(), 0, n-1);
+    imprimir_vetor(v.data(), n);
     
 
     return 0;
