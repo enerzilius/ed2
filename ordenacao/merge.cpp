@@ -8,8 +8,8 @@ template<typename T>
 void merge(T *v, int p, int q, int r) {
     int n1 = q-p+1, n2 = r - q;
 
-    T* E[n1];
-    T* E[n2];
+    T* E = new T[n1];
+    T* D = new T[n2];
 
     for(int i = 0; i < n1; i++) E[i] = v[p+i];
     for(int i = 0; i <  n2; i++) D[i] = v[q+1+i];
@@ -37,18 +37,20 @@ void merge(T *v, int p, int q, int r) {
         j++, k++;
     }
 
-    delete E[];
-    delete D[];
+    delete[] E;
+    delete[] D;
 }
 
 int main() {
-    int v[] = { 1, 7, 8, 9, 3 };
-    int p = 0, q = 2, r = 5;
+    int v[] = { 2, 3, 0, 5 };
+    int p = 0, r = 3;
+    int q = p + (r - p) / 2;
     merge(v, p, q, r) ;
-    for (int i = 0; i < r+1; i++)
+    for (int i = 0; i <= r; i++)
     {
-        cout<<v[i] << endl;
+        cout<<v[i] << " ";
     }
+    cout<<"\n";
     
 
     return 0;
