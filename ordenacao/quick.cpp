@@ -8,8 +8,8 @@ using namespace std;
 // PARTICIONAMENTO
 
 template<typename T>
-int partition(int* v, int p, int r) {
-    int x = v[r];
+int partition(T* v, int p, int r) {
+    T x = v[r];
     int i = p-1;
 
     for (int j = p; j < r; j++)
@@ -22,6 +22,15 @@ int partition(int* v, int p, int r) {
     swap(v[i+1], v[r]);
     
     return i+1;
+}
+
+template<typename T>
+void quickSort(T* v, int p, int r) {
+    if(p < r) {
+        int q = partition(v, p, r);
+        quickSort(v, p, q-1);
+        quickSort(v, q+1, r);
+    }
 }
 
 
