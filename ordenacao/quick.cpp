@@ -13,7 +13,7 @@ void quickSort() {
     // r -> último (pivô)
     // pivô (último elemento) -> divide em duas partições, uma com valores só menores que ele e outra com maiores
 
-
+    
     return;
 }
 
