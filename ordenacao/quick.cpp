@@ -8,13 +8,20 @@ using namespace std;
 // PARTICIONAMENTO
 
 template<typename T>
-void quickSort() {
-    // p -> primeiro
-    // r -> último (pivô)
-    // pivô (último elemento) -> divide em duas partições, uma com valores só menores que ele e outra com maiores
+int partition(int* v, int p, int r) {
+    int x = v[r];
+    int i = p-1;
 
+    for (int j = p; j < r; j++)
+    {
+        if(v[j] <= x) {
+            i++;
+            swap(v[i], v[j]);
+        }
+    }
+    swap(v[i+1], v[r]);
     
-    return;
+    return i+1;
 }
 
 
