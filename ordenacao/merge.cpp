@@ -56,7 +56,9 @@ void mergeSort(T* v, int p, int r) {
 int main(int argc, char** argv) {
     using namespace std;
 
-    int n = stoi(argv[1]);
+    int n =10;
+
+    if(argc > 1) n = atoi(argv[1]);
 
     vector<int> v = gerar_vetor_aleatorio(n, 99, n*100);
     imprimir_vetor(v.data(), n);

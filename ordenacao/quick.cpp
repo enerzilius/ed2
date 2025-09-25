@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
-#include "utils.cpp"
+#include "utils.h"
 
 using namespace std;
 
@@ -35,5 +35,18 @@ void quickSort(T* v, int p, int r) {
 
 
 int main(int argc, char** argv) {
+    int n =10;
+
+    if(argc > 1) n = atoi(argv[1]);
+
+    vector<int> v;
+    v = gerar_vetor_aleatorio(n, 99, n*100);
+    imprimir_vetor(v.data(), v.size());
+
+
+    quickSort(v.data(), 0, v.size()-1);
+    imprimir_vetor(v.data(), v.size());
+
+
     return 0;
 }
