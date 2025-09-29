@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <cstdio>
-#include "utils.cpp"
+#include "../utils/utils.cpp"
 
 using namespace std;
 
