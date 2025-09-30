@@ -2,6 +2,7 @@
 #include <algorithm>
 #include <cstdio>
 #include <unordered_set>
+#include <utility>
 #include "../utils/utils.h"
 
 using namespace std;
@@ -22,6 +23,23 @@ vector<T> getUnique(const vector<T>& v) {
     return keys;
 }
 
+template<typename T>
+pair<T, T> twoSum(vector<T> &v, T k) {
+    unordered_set<T> hash;
+    for (T num : v)
+    {
+        hash.insert(num);
+    }
+
+    for(T num : v) {
+        if(hash.count(k - num) == 1) {
+            return make_pair(num, k-num);
+        }
+    }
+
+    return make_pair(-1, -1);
+}
+
 int main(int argc, char** argv) {
     int n =10;
 
@@ -31,9 +49,11 @@ int main(int argc, char** argv) {
     v = gerar_vetor_aleatorio(n, 99, n);
 
     imprimir_vetor(v.data(), v.size());
-    vector<int> unicos = getUnique(v);
-    cout<<"\n";
+    // vector<int> unicos = getUnique(v);
+    // cout<<"\n";
     
-    imprimir_vetor(unicos.data(), unicos.size());
-
+    // imprimir_vetor(unicos.data(), unicos.size());
+    int k = 8;
+    pair<int, int> soma = twoSum(v, k);
+    cout<<k<<" = "<<soma.first<<" + "<<soma.second<<"\n";
 }
