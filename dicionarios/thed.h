@@ -68,7 +68,9 @@ public:
     }
 
     //Imprime informações sobre a tabela (m, n e fator de carga)
-    void imprimir_info();
+    void imprimir_info() {
+        std::cout<<"M= "<<this->m<<", n = " <<this->n<<", Fator de Carga: "<<(float)this->n/(float)this->m<<", Redimencionamentos: "<<this->redims<<"\n";
+    }
 
     //par chave-valor inválido para indicar que a chave não foi encontrada
     std::pair<int,int> invalido;
