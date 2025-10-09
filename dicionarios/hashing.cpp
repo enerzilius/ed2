@@ -1,30 +1,28 @@
 #include <iostream>
-#include <algorithm>
-#include <cstdio>
-#include <unordered_set>
-#include <utility>
-#include "../utils/utils.h"
+#include "thed.h"
+#include "./print_pair.h"
 
 using namespace std;
 
-//Minimiza o número de colisões
-//Espalha uniformimente as chaves pelas posições da tabela
-    //Todas as posições da tabela sejam igualmente prováveis de receberam chaves
+void test3(int argc, char** argv){
+    int m = atoi(argv[1]);
+    int n = atoi(argv[2]);
+    int limiar = atoi(argv[3]);
 
-//Tratamento de colisões por encadeamento
-//Encadeia um par chave e valor com mesmo módulo
-/*
-h(999) = 999 % 10 = 9
-h(99) = 99 %10 = 9
-9 |  |->(999,1);(99,1);
-*/
-template<typename T>
-void hashing(T x, int M) {
-    
-    return x % M;
+    TabHashEncadeamento tab(m, limiar);
+
+    for(int i = 0; i < n; i++){
+        tab.inserir(rand() % (n*100), rand() % (n*100));
+    }
+
+    tab.imprimir_info();
+    //tab.imprimir();
+
 }
 
 
 int main(int argc, char** argv) {
+    test3(argc, argv);
+
     return 0;
 }
