@@ -16,7 +16,7 @@ void test3(int argc, char** argv){
     }
 
     tab.imprimir_info();
-    //tab.imprimir();
+    tab.imprimir();
 
 }
 

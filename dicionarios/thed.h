@@ -105,6 +105,7 @@ private:
             if(antiga[i].size() > 0) for (auto& e : antiga[i]) this->inserir(e.first, e.second);
             
         }
+        this->redims++;
         delete[] antiga;
     }
     
