@@ -58,4 +58,27 @@ std::vector<int> gerar_vetor_aleatorio_sem_reps(int n, int seed){
     return v;
 }
 
+bool isPrime(int n) {
+    if(n <= 1) return false;
+    if(n <= 2) return true;
+    if(n % 2 == 0 || n % 3 == 0) return false;
+
+    for (int i = 5; i < i * i <= n; i += 6)
+    {
+        if(n % i == 0 || n % (i+2) == 0) return false;
+    }
+    return true;
+}
+
+int findNearestPrime(int n) {
+    if(n < 0) return 1;
+    if(isPrime(n)) return n;
+
+    int i = n;
+    int j = n;
+    while(!isPrime(i)) {
+        i++;
+    }
+    return i;
+}
 
