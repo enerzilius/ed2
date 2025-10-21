@@ -4,6 +4,7 @@
 #include <utility>
 #include <iostream>
 
+
 class TabHashEndAberto {
 public:
     //Construtor: inicializa uma nova tabela com tamanho m

@@ -3,6 +3,7 @@
 #include <vector>
 #include <utility>
 #include <iostream>
+#include "../utils/utils.h"
 
 TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5) {
     this->m = tamanho;
@@ -28,7 +29,7 @@ void TabHashEndAberto::inserir(int chave, int valor) {
     }
     if ((float)n / m >= this->limiar)
     {
-        redimensionar(m*2);
+        redimensionar(findNearestPrime(m*2));
     }
     
     int hashed = hash(chave);
