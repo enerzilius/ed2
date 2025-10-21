@@ -68,10 +68,14 @@ int TabHashEndAberto::hash(int chave) {
 
 void TabHashEndAberto::redimensionar(int novo_m) {
     Elemento* novo = new Elemento[novo_m];
+    
     for (int i = 0; i < novo_m; i++)
     {
         novo[i].estado = Estado::LIVRE;
+        novo[i].chave = 0;
+        novo[i].valor = 0;
     }
+
     Elemento* antiga = tabela;
     tabela = novo;
     int m_antigo = m;
