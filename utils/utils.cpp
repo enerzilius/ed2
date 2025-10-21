@@ -78,10 +78,12 @@ int findNearestPrime(int n) {
 
     int i = n;
     int j = n;
-    while(!isPrime(i)) {
-        i++;
-    }
-    return i;
+    while(!isPrime(i)) i++;
+
+    while(!isPrime(j) && j > 1) j--;
+
+    if(j <= 1) return i;
+    return (n - j <= i - n) ? j : i;
 }
 
 void printBool(bool b, std::string one, std::string zero) {
