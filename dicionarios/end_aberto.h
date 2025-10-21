@@ -40,6 +40,7 @@ public:
         std::cout << "m: " << this->m << std::endl;
         std::cout << "n: " << this->n << std::endl;
         std::cout << "fator de carga: " << (float)this->n/this->m << std::endl;
+        std::cout << "limiar: " << this->limiar << std::endl;
         std::cout << "redimensionamentos: " << this->redims << std::endl;
     }
 

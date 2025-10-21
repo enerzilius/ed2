@@ -9,7 +9,11 @@ TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5) {
     this->n = 0;
     this->limiar = limiar;
     this->tabela = new Elemento[this->m];
-    for(int i = 0; i < tamanho; i++) this->tabela[i].estado = Estado::LIVRE;
+    for(int i = 0; i < tamanho; i++) {
+        this->tabela[i].estado = Estado::LIVRE;
+        this->tabela[i].chave = 0;
+        this->tabela[i].valor = 0;
+    }
 }
 
 TabHashEndAberto::~TabHashEndAberto() {
@@ -22,10 +26,15 @@ void TabHashEndAberto::inserir(int chave, int valor) {
         tabela[pos].valor = valor;
         return;
     }
+    if ((float)n / m >= this->limiar)
+    {
+        redimensionar(m*2);
+    }
+    
     int hashed = hash(chave);
     hashed = hashed % m;
     while(tabela[hashed].estado == Estado::OCUPADO) {
-        hashed = (hashed+1) % m;
+        hashed = (++hashed) % m;
     }
     tabela[hashed].chave = chave;
     tabela[hashed].valor = valor;
@@ -41,7 +50,7 @@ int TabHashEndAberto::buscar_pos(int chave) {
         {
             return h;
         }
-        h = (h+1)%this->m;
+        h = (++h)%this->m;
     }
     return -1;
 }
@@ -54,4 +63,23 @@ std::pair<int, int> TabHashEndAberto::buscar(int chave) {
 
 int TabHashEndAberto::hash(int chave) {
     return chave % m;
+}
+
+void TabHashEndAberto::redimensionar(int novo_m) {
+    Elemento* novo = new Elemento[novo_m];
+    for (int i = 0; i < novo_m; i++)
+    {
+        novo[i].estado = Estado::LIVRE;
+    }
+    Elemento* antiga = tabela;
+    tabela = novo;
+    int m_antigo = m;
+    n = 0;
+    m = novo_m;
+    for (int i = 0; i < m_antigo; i++)
+    {
+        if(antiga[i].estado == Estado::OCUPADO) inserir(antiga[i].chave, antiga[i].valor);
+    }
+    redims++;
+    delete[] antiga;
 }
