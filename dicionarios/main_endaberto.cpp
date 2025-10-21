@@ -14,7 +14,7 @@ int main(int argc, char** argv) {
 
     TabHashEndAberto tabela(m, limiar);
 
-    for (int i = 0; i <= n; i++)
+    for (int i = 0; i < n; i++)
     {
         tabela.inserir(rand() % (n*100), rand() % (n*100));
     }
