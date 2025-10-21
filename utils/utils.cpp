@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <vector>
+#include <iostream>
+#include <string>
 #include "utils.h"
 
 void trocar(int* v, int a, int b){
@@ -60,12 +62,12 @@ std::vector<int> gerar_vetor_aleatorio_sem_reps(int n, int seed){
 
 bool isPrime(int n) {
     if(n <= 1) return false;
-    if(n <= 2) return true;
+    if(n <= 3) return true;
     if(n % 2 == 0 || n % 3 == 0) return false;
 
-    for (int i = 5; i < i * i <= n; i += 6)
+    for (int i = 5; i * i <= n; i += 6)
     {
-        if(n % i == 0 || n % (i+2) == 0) return false;
+        if(n % i == 0 || n % (i+2) == 0) return true;
     }
     return true;
 }
@@ -82,3 +84,7 @@ int findNearestPrime(int n) {
     return i;
 }
 
+void printBool(bool b, std::string one, std::string zero) {
+    if(b)std::cout<<one<<"\n";
+    else std::cout<<zero<<"\n";
+}
