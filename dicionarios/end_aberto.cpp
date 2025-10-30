@@ -5,12 +5,14 @@
 #include <iostream>
 #include "../utils/utils.h"
 
-TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, std::string sondagem) {
+TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, std::string sondagem = "linear") {
     this->m = tamanho;
     this->n = 0;
     this->limiar = limiar;
     this->tabela = new Elemento[this->m];
     this->sondagem = sondagem;
+    this->colisoes = 0;
+    this->redims = 0;
     for(int i = 0; i < tamanho; i++) {
         this->tabela[i].estado = Estado::LIVRE;
         this->tabela[i].chave = 0;
@@ -72,11 +74,11 @@ std::pair<int, int> TabHashEndAberto::buscar(int chave) {
 int TabHashEndAberto::hash(int chave, int k) {
     if(sondagem == "linear") return (chave % this->m + k) % this->m;
     if(sondagem == "quadratica") return (chave % this->m + (k*k)) % this->m;
-    if(sondagem == "duplo") {
+    if(sondagem == "duplo" || sondagem == "dupla") {
         int p = k * ((chave & (m-1)) + 1);
         return (chave % this->m + k) % this->m;
     }
-    return (chave % this->m + k) % this->m;
+    //return (chave % this->m + k) % this->m;
 }
 
 void TabHashEndAberto::redimensionar(int novo_m) {

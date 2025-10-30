@@ -32,19 +32,21 @@ public:
             char estado = el.estado == Estado::APAGADO ? 'A' :
                         (el.estado == Estado::LIVRE ? 'L' : 'O');
             std::cout << "[" << estado << "]";
-            std::cout << std::endl;
+            std::cout << "\n";
         }    
     }
 
     //Imprime informações sobre a tabela (m, n e fator de carga)
     void imprimir_info()
     {
-        std::cout << "m: " << this->m << std::endl;
-        std::cout << "n: " << this->n << std::endl;
-        std::cout << "fator de carga: " << (float)this->n/this->m << std::endl;
-        std::cout << "limiar: " << this->limiar << std::endl;
-        std::cout << "colisoes: " << this->colisoes << std::endl;
-        std::cout << "redimensionamentos: " << this->redims << std::endl;
+
+        std::cout << "funcao de sondagem: " << this->sondagem << "\n";
+        std::cout << "m: " << this->m << "\n";
+        std::cout << "n: " << this->n << "\n";
+        std::cout << "fator de carga: " << (float)this->n/this->m << "\n";
+        std::cout << "limiar: " << this->limiar << "\n";
+        std::cout << "colisoes: " << this->colisoes << "\n";
+        std::cout << "redimensionamentos: " << this->redims << "\n";
     }
 
     //par chave-valor inválido para indicar que a chave não foi encontrada
