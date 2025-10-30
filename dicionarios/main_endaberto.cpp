@@ -12,7 +12,7 @@ int main(int argc, char** argv) {
         limiar = atof(argv[3]);
     }
 
-    TabHashEndAberto tabela(m, limiar);
+    TabHashEndAberto tabela(m, limiar, "linear");
 
     for (int i = 0; i < n; i++)
     {

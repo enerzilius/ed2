@@ -5,11 +5,12 @@
 #include <iostream>
 #include "../utils/utils.h"
 
-TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5) {
+TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, std::string sondagem) {
     this->m = tamanho;
     this->n = 0;
     this->limiar = limiar;
     this->tabela = new Elemento[this->m];
+    this->sondagem = sondagem;
     for(int i = 0; i < tamanho; i++) {
         this->tabela[i].estado = Estado::LIVRE;
         this->tabela[i].chave = 0;
@@ -32,10 +33,14 @@ void TabHashEndAberto::inserir(int chave, int valor) {
         redimensionar(findNearestPrime(m*2));
     }
     
-    int hashed = hash(chave);
-    hashed = hashed % m;
-    while(tabela[hashed].estado == Estado::OCUPADO) {
-        hashed = (++hashed) % m;
+    int k = 0;
+    int hashed = hash(chave, k);
+    while(this->tabela[hashed].estado == Estado::OCUPADO){
+        colisoes++;
+        k++;
+        hashed = hash(chave, k);
+        if(k == this->m)
+            return;
     }
     tabela[hashed].chave = chave;
     tabela[hashed].valor = valor;
@@ -44,13 +49,15 @@ void TabHashEndAberto::inserir(int chave, int valor) {
 }
 
 int TabHashEndAberto::buscar_pos(int chave) {
-    int h = hash(chave);
+    int k = 0;
+    int h = hash(chave, k);
     while (this->tabela[h].estado != Estado::LIVRE)
     {
         if (tabela[h].estado == Estado::OCUPADO && tabela[h].chave == chave)
         {
             return h;
         }
+        k++;
         h = (++h)%this->m;
     }
     return -1;
@@ -62,8 +69,14 @@ std::pair<int, int> TabHashEndAberto::buscar(int chave) {
     return invalido;
 }
 
-int TabHashEndAberto::hash(int chave) {
-    return chave % m;
+int TabHashEndAberto::hash(int chave, int k) {
+    if(sondagem == "linear") return (chave % this->m + k) % this->m;
+    if(sondagem == "quadratica") return (chave % this->m + (k*k)) % this->m;
+    if(sondagem == "duplo") {
+        int p = k * ((chave & (m-1)) + 1);
+        return (chave % this->m + k) % this->m;
+    }
+    return (chave % this->m + k) % this->m;
 }
 
 void TabHashEndAberto::redimensionar(int novo_m) {

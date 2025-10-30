@@ -3,12 +3,13 @@
 #include <vector>
 #include <utility>
 #include <iostream>
+#include <string>
 
 
 class TabHashEndAberto {
 public:
     //Construtor: inicializa uma nova tabela com tamanho m
-    TabHashEndAberto(int tamanho, float limiar);
+    TabHashEndAberto(int tamanho, float limiar, std::string sondagem);
 
     //Destrutor: libera todos os recursos alocados para a tabela
     ~TabHashEndAberto(); 
@@ -42,6 +43,7 @@ public:
         std::cout << "n: " << this->n << std::endl;
         std::cout << "fator de carga: " << (float)this->n/this->m << std::endl;
         std::cout << "limiar: " << this->limiar << std::endl;
+        std::cout << "colisoes: " << this->colisoes << std::endl;
         std::cout << "redimensionamentos: " << this->redims << std::endl;
     }
 
@@ -74,10 +76,12 @@ private:
     // limiar para redimensionamento. quando n/m > limiar, redimensionar
     float limiar; 
     int redims; // número de redimensionamentos realizados
+    int colisoes;
+    std::string sondagem;
 
     Elemento *tabela; // tabela hash
 
-    int hash(int chave); //função hash
+    int hash(int chave, int k); //função hash
 
     // redimensiona a tabela para o novo tamanho (novo_m)
     void redimensionar(int novo_m); 
