@@ -41,7 +41,7 @@ public:
     void imprimir_info()
     {
 
-        std::cout << "funcao de sondagem: " << this->sondagem << "\n";
+        //std::cout << "funcao de sondagem: " << this->sondagem << "\n";
         std::cout << "m: " << this->m << "\n";
         std::cout << "n: " << this->n << "\n";
         std::cout << "fator de carga: " << (float)this->n/this->m << "\n";
