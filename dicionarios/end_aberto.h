@@ -10,7 +10,7 @@
 class TabHashEndAberto {
 public:
     //Construtor: inicializa uma nova tabela com tamanho m
-    TabHashEndAberto(int tamanho, float limiar, Sondagem* sondagem);
+    TabHashEndAberto(int tamanho, Sondagem* sondagem, float limiar);
 
     //Destrutor: libera todos os recursos alocados para a tabela
     ~TabHashEndAberto(); 
@@ -41,7 +41,7 @@ public:
     void imprimir_info()
     {
 
-        //std::cout << "funcao de sondagem: " << this->sondagem << "\n";
+        std::cout << "funcao de sondagem: " << this->sondagem->name << "\n";
         std::cout << "m: " << this->m << "\n";
         std::cout << "n: " << this->n << "\n";
         std::cout << "fator de carga: " << (float)this->n/this->m << "\n";

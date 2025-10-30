@@ -6,7 +6,7 @@
 #include "../utils/utils.h"
 #include "./sondagem/sondagem.h"
 
-TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, Sondagem* sondagem = new SondagemLinear()) {
+TabHashEndAberto::TabHashEndAberto(int tamanho, Sondagem* sondagem, float limiar = 0.5) {
     this->m = tamanho;
     this->n = 0;
     this->limiar = limiar;
@@ -97,5 +97,6 @@ void TabHashEndAberto::redimensionar(int novo_m) {
         if(antiga[i].estado == Estado::OCUPADO) inserir(antiga[i].chave, antiga[i].valor);
     }
     redims++;
+    sondagem->redim_callback(m);
     delete[] antiga;
 }
