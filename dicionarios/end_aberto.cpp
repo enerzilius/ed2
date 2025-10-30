@@ -4,8 +4,9 @@
 #include <utility>
 #include <iostream>
 #include "../utils/utils.h"
+#include "./sondagem/sondagem.h"
 
-TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, std::string sondagem = "linear") {
+TabHashEndAberto::TabHashEndAberto(int tamanho, float limiar = 0.5, Sondagem* sondagem ) {
     this->m = tamanho;
     this->n = 0;
     this->limiar = limiar;
@@ -72,13 +73,8 @@ std::pair<int, int> TabHashEndAberto::buscar(int chave) {
 }
 
 int TabHashEndAberto::hash(int chave, int k) {
-    if(sondagem == "linear") return (chave % this->m + k) % this->m;
-    if(sondagem == "quadratica") return (chave % this->m + (k*k)) % this->m;
-    if(sondagem == "duplo" || sondagem == "dupla") {
-        int p = k * ((chave & (m-1)) + 1);
-        return (chave % this->m + k) % this->m;
-    }
-    //return (chave % this->m + k) % this->m;
+    int p = sondagem->p(chave, k);
+    return (chave % this->m + k) % this->m;
 }
 
 void TabHashEndAberto::redimensionar(int novo_m) {

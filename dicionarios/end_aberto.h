@@ -4,12 +4,13 @@
 #include <utility>
 #include <iostream>
 #include <string>
+#include "./sondagem/sondagem.h"
 
 
 class TabHashEndAberto {
 public:
     //Construtor: inicializa uma nova tabela com tamanho m
-    TabHashEndAberto(int tamanho, float limiar, std::string sondagem);
+    TabHashEndAberto(int tamanho, float limiar, Sondagem* sondagem);
 
     //Destrutor: libera todos os recursos alocados para a tabela
     ~TabHashEndAberto(); 
@@ -79,7 +80,7 @@ private:
     float limiar; 
     int redims; // número de redimensionamentos realizados
     int colisoes;
-    std::string sondagem;
+    Sondagem* sondagem;
 
     Elemento *tabela; // tabela hash
 

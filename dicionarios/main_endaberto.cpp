@@ -1,4 +1,5 @@
 #include "end_aberto.h"
+#include "./sondagem/sondagem.h"
 
 using namespace std;
 
@@ -12,7 +13,8 @@ int main(int argc, char** argv) {
         limiar = atof(argv[3]);
     }
 
-    TabHashEndAberto tabela(m, limiar, "dupla");
+    Sondagem* sondagem = new SondagemLinear();
+    TabHashEndAberto tabela(m, limiar, sondagem);
 
     for (int i = 0; i < n; i++)
     {
