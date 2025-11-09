@@ -41,11 +41,9 @@ int main(int argc, char** argv) {
 
     vector<int> v;
     v = gerar_vetor_aleatorio(n, 99, n*100);
-    imprimir_vetor(v.data(), v.size());
 
 
     quickSort(v.data(), 0, v.size()-1);
-    imprimir_vetor(v.data(), v.size());
 
 
     return 0;
