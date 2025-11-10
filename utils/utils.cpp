@@ -88,6 +88,19 @@ int findNearestPrime(int n) {
     return (isPrime(i)) ? i : j;
 }
 
+int findLowestPrime(int n) {
+    if(n < 0) return 1;
+    if(isPrime(n)) return n;
+
+    int j = n-1;
+    while(isPrime(j)) {
+        if(j > 1) j--;
+        else break;
+    }
+    
+    return j;
+}
+
 void printBool(bool b, std::string one, std::string zero) {
     if(b)std::cout<<one<<"\n";
     else std::cout<<zero<<"\n";
