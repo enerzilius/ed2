@@ -46,8 +46,11 @@ public:
     //retorna true se a árvore estiver vazia
     bool vazia();
 
-private:
+    int altura();
 
+private:
+    int contarNos(NoABB<C, V>* node);
+    int alturaRecursiva(NoABB<C, V>* node);
     NoABB<C, V>* inserirNode(NoABB<C, V>* no, C chave, V valor);
     NoABB<C, V>* removerNode(NoABB<C, V>* no, C chave);
     void ABB<C, V>::imprimirNode(NoABB<C, V> *no, int nivel, char lado){

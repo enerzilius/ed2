@@ -8,7 +8,7 @@ ABB<C, V>::ABB() {
 }
 
 template<typename C, typename V>
-NoABB<C, V>* ABB<C, V>::buscar(C chave) {  // Note: returns pointer, not object
+NoABB<C, V>* ABB<C, V>::buscar(C chave) {
     NoABB<C, V>* node = this->raiz;
     while(node != nullptr) {
         if(chave == node->chave) break;
@@ -27,7 +27,31 @@ template<typename C, typename V>
 NoABB<C, V>* ABB<C, V>::inserirNode(NoABB<C, V>* node, C chave, V valor) {
     if(node == nullptr) return new NoABB<C, V>(chave, valor);
     if(chave < node->chave) node->esq = inserirNode(node->esq, chave, valor);
-    else if(chave > node->chave) node->dir = inserirNode(node->dir, chave, valor);  // Fixed: was node->esq
+    else if(chave > node->chave) node->dir = inserirNode(node->dir, chave, valor);
     else node->valor = valor;
-    return node;  // Don't forget to return the node!
+    return node;
+}
+
+template<typename C, typename V>
+int ABB<C, V>::tamanho() {
+    return contarNos(raiz);
+}
+
+template<typename C, typename V>
+int ABB<C, V>::contarNos(NoABB<C, V>* node) {
+    if(node == nullptr) return 0;
+    return 1+tamanho(node->esq)+tamanho(node->dir);
+}
+
+template<typename C, typename V>
+int ABB<C, V>::altura() {
+    return alturaRecursiva(raiz);
+}
+
+template<typename C, typename V>
+int ABB<C, V>::alturaRecursiva(NoABB<C, V>* node) {
+    if(node == nullptr) return 0;
+    int alturaEsquerda = altura(node->esq);
+    int alturaDireita = altura(node->dir);
+    return alturaEsquerda>alturaDireita ? alturaEsquerda+1 : alturaEsquerda + 1;
 }
