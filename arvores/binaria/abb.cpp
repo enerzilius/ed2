@@ -10,8 +10,7 @@ ABB<C, V>::ABB() {
 template<typename C, typename V>
 ABB<C, V>::~ABB() {
     if(this != nullptr) {
-        delete esq;
-        delete dir;
+        delete raiz;
     }
 }
 
@@ -62,4 +61,25 @@ int ABB<C, V>::alturaRecursiva(NoABB<C, V>* node) {
     int alturaEsquerda = altura(node->esq);
     int alturaDireita = altura(node->dir);
     return alturaEsquerda>alturaDireita ? alturaEsquerda+1 : alturaEsquerda + 1;
+}
+
+template<typename C, typename V>
+void ABB<C, V>::imprimir() {
+    this->imprimirNode(raiz, 0, 'R');
+}
+
+template<typename C, typename V>
+void ABB<C, V>::imprimirNode(NoABB<C, V> *no, int nivel, char lado) {
+    for(int i = 0; i < nivel; i++){
+        std::cout << "-->";
+    }
+    if(no == NULL)
+        std::cout << "(" << lado << ") (VAZIO)" << std::endl;
+    else{
+        std::cout << "(" << lado << ") (" 
+                    << no->chave << ", " << no->valor << ")" << std::endl;
+
+        imprimirNo(no->esq, nivel + 1, 'E');
+        imprimirNo(no->dir, nivel + 1, 'D');
+    }
 }

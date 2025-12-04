@@ -1,19 +1,20 @@
 #pragma once
 
 #include <iostream>
-#include "abb.h"
 
+template<typename C, typename V>
+class ABB;
 
 template <typename C, typename V>
 class NoABB
 {
     public:
-        NoABB(C chave, V valor) : chave(chave), valor(valor), esq(nullptr), dir(nullptr);
+        NoABB(C chave, V valor);
 
         ~NoABB();
 
-        C getChave() { return chave; }
-        V& getValor() { return valor; }
+        C getChave();
+        V& getValor();
 
     private:
         C chave;
