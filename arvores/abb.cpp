@@ -8,6 +8,14 @@ ABB<C, V>::ABB() {
 }
 
 template<typename C, typename V>
+ABB<C, V>::~ABB() {
+    if(this != nullptr) {
+        delete esq;
+        delete dir;
+    }
+}
+
+template<typename C, typename V>
 NoABB<C, V>* ABB<C, V>::buscar(C chave) {
     NoABB<C, V>* node = this->raiz;
     while(node != nullptr) {
