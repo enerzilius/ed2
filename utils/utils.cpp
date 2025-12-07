@@ -105,3 +105,7 @@ void printBool(bool b, std::string one, std::string zero) {
     if(b)std::cout<<one<<"\n";
     else std::cout<<zero<<"\n";
 }
+
+void divider() {
+    std::cout<<"\n===============================================================================\n\n";
+}

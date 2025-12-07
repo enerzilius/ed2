@@ -1,2 +1,2 @@
-all: main.cpp node_abb.cpp abb.cpp ../../utils/utils.cpp
-	g++ -o main main.cpp node_abb.cpp abb.cpp ../../utils/utils.cpp
+all: main.cpp abb.h ../../utils/utils.cpp
+	g++ -o main abb.h ../../utils/utils.cpp main.cpp 
