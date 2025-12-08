@@ -58,7 +58,10 @@ public:
         return node;
     }
     //remove o nó com a chave especificada
-    void remover(C chave);
+    void remover(C chave) {
+        raiz = removerNode(raiz, chave);
+    }  
+
     //imprime a árvore
 
     void imprimir() {
@@ -135,7 +138,36 @@ private:
     }
 
     NoABB<C, V>* fNode(NoABB<C, V>* no, C chave, V valor);
-    NoABB<C, V>* removerNode(NoABB<C, V>* no, C chave);
+    NoABB<C, V>* removerNode(NoABB<C, V>* no, C chave) {
+        if(no == nullptr) return nullptr;
+        if(chave > no->chave) no->dir = removerNode(no->dir, chave);
+        else if(chave < no->chave) no->esq = removerNode(no->esq, chave);
+        else {
+            NoABB<C, V>* temp = nullptr;
+            if(no->dir == nullptr && no->esq == nullptr) {
+                delete no;
+                return nullptr;
+            }
+            if(no->esq == nullptr) {
+                temp = no->dir;
+                no->dir = nullptr;
+                delete no;
+                return temp;
+            }
+            if(no->dir == nullptr) {
+                temp = no->esq;
+                no->esq = nullptr;
+                delete no;
+                return temp;
+            }
+            auto s = minimoNode(no->dir);
+            no->chave = s->chave;
+            no->valor = s->valor;
+            no->dir = removerNode(no->dir, s->chave);
+        }
+
+        return no;
+    }
    
     void imprimirNode(NoABB<C, V> *no, int nivel, char lado) {
         for(int i = 0; i < nivel; i++){
