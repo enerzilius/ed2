@@ -15,6 +15,10 @@ class NoABB
         C getChave() { return chave; }
         V& getValor() { return valor; }
 
+        void imprimir() {
+            std::cout<<"Chave: "<<chave<<" -> Valor: "<<valor<<"\n";
+        }
+
     private:
         C chave;
         V valor;
@@ -40,7 +44,7 @@ public:
 
     //insere o par (chave, valor) na árvore
     void inserir(C chave, V valor) {
-        inserirNode(raiz, chave, valor);
+        raiz = inserirNode(raiz, chave, valor);
     }
 
     //retorna o endereço do nó com a chave especificada
@@ -58,7 +62,7 @@ public:
     //imprime a árvore
 
     void imprimir() {
-        this->imprimirNode(raiz, 0, 'R');
+        imprimirNode(raiz, 0, 'R');
     }
 
     //retorna o endereço do nó com a menor chave da árvore
@@ -93,12 +97,24 @@ public:
     }
 
 private:
-    NoABB<C, V>* inserirNode(NoABB<C, V>* node, C chave, V valor) {
-        if(node == nullptr) return new NoABB<C, V>(chave, valor);
-        if(chave < node->chave) node->esq = inserirNode(node->esq, chave, valor);
-        else if(chave > node->chave) node->dir = inserirNode(node->dir, chave, valor);
-        else node->valor = valor;
-        return node;
+    NoABB<C, V>* inserirNode(NoABB<C, V>* no, C chave, V valor) {
+        std::cout << "DEBUG: inserirNode called with no = " << no 
+                << ", chave = " << chave << std::endl;
+        
+        if(no == nullptr) {
+            NoABB<C, V>* novo = new NoABB<C, V>(chave, valor);
+            std::cout << "DEBUG: Created new node at address: " << novo << std::endl;
+            return novo;
+        }
+        
+        if(chave < no->chave) {
+            no->esq = inserirNode(no->esq, chave, valor);
+        } else if(chave > no->chave) {
+            no->dir = inserirNode(no->dir, chave, valor);
+        } else {
+            no->valor = valor;
+        }
+        return no;
     }
 
     int contarNos(NoABB<C, V>* node) {
@@ -117,7 +133,7 @@ private:
    
     void imprimirNode(NoABB<C, V> *no, int nivel, char lado) {
         for(int i = 0; i < nivel; i++){
-            std::cout << "-->";
+            std::cout << "-->   ";
         }
         if(no == NULL)
             std::cout << "(" << lado << ") (VAZIO)" << std::endl;
@@ -125,8 +141,8 @@ private:
             std::cout << "(" << lado << ") (" 
                         << no->chave << ", " << no->valor << ")" << std::endl;
 
-            imprimirNo(no->esq, nivel + 1, 'E');
-            imprimirNo(no->dir, nivel + 1, 'D');
+            imprimirNode(no->esq, nivel + 1, 'E');
+            imprimirNode(no->dir, nivel + 1, 'D');
         }
     }
 

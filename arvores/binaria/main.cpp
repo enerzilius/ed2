@@ -14,8 +14,8 @@ int main(int argc, char** argv) {
 
     ABB<int, int> arvore;
     arvore.inserir(7, 7);
-
     
+    arvore.imprimir();
 
     return 0;
 }
