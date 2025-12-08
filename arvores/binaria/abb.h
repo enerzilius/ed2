@@ -78,9 +78,15 @@ public:
     }
 
     //retorna o endereço do nó com a maior chave da árvore
-    NoABB<C, V>* maximo();
+    NoABB<C, V>* maximo() {
+        return maximoNode(raiz);
+    }
     //retorna o endereço do nó com a maior chave da subárvore enraizada no nó especificado
-    NoABB<C, V>* maximo(NoABB<C, V>* no);
+    NoABB<C, V>* maximoNode(NoABB<C, V>* no) {
+        if(no->dir == nullptr) return no;
+        NoABB<C, V>* maior = maximoNode(no->dir);
+        return maior;
+    }
 
     //retorna o endereço do nó com a chave sucessora da chave especificada
     NoABB<C, V>* sucessor(C chave);

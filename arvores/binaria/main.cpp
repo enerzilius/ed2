@@ -22,6 +22,8 @@ int main(int argc, char** argv) {
 
     NoABB<int, int>* menor = arvore.minimo();
     menor->imprimir();
+    NoABB<int, int>* maior = arvore.maximo();
+    maior->imprimir();
 
     return 0;
 }
