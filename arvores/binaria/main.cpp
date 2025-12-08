@@ -14,8 +14,14 @@ int main(int argc, char** argv) {
 
     ABB<int, int> arvore;
     arvore.inserir(7, 7);
+    arvore.inserir(3, 3);
+    arvore.inserir(1, 3);
+    arvore.inserir(10, 3);
     
     arvore.imprimir();
+
+    NoABB<int, int>* menor = arvore.minimo();
+    menor->imprimir();
 
     return 0;
 }

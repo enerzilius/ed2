@@ -66,9 +66,16 @@ public:
     }
 
     //retorna o endereço do nó com a menor chave da árvore
-    NoABB<C, V>* minimo();
+    NoABB<C, V>* minimo() {
+        return minimoNode(raiz);
+    }
     //retorna o endereço do nó com a menor chave da subárvore enraizada no nó especificado
-    NoABB<C, V>* minimo(NoABB<C, V>* no);
+    NoABB<C, V>* minimoNode(NoABB<C, V>* no) {
+        if(no->esq == nullptr) return no;
+        NoABB<C, V>* menor = minimoNode(no->esq);
+        return menor; 
+        
+    }
 
     //retorna o endereço do nó com a maior chave da árvore
     NoABB<C, V>* maximo();
@@ -98,14 +105,7 @@ public:
 
 private:
     NoABB<C, V>* inserirNode(NoABB<C, V>* no, C chave, V valor) {
-        std::cout << "DEBUG: inserirNode called with no = " << no 
-                << ", chave = " << chave << std::endl;
-        
-        if(no == nullptr) {
-            NoABB<C, V>* novo = new NoABB<C, V>(chave, valor);
-            std::cout << "DEBUG: Created new node at address: " << novo << std::endl;
-            return novo;
-        }
+        if(no == nullptr) return new NoABB<C, V>(chave, valor); 
         
         if(chave < no->chave) {
             no->esq = inserirNode(no->esq, chave, valor);
@@ -114,7 +114,7 @@ private:
         } else {
             no->valor = valor;
         }
-        return no;
+        return no; 
     }
 
     int contarNos(NoABB<C, V>* node) {
